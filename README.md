@@ -42,6 +42,15 @@
 
 ---
 
+> [!NOTE]
+> **Custom Fork Notice (`custom-12.0`)**:
+> This repository is a custom build fork based directly on upstream [Jellyfin Packaging v12.0](https://github.com/jellyfin/jellyfin-packaging/releases/tag/v12.0-202609072105). It provides automated GitHub Actions workflows configured to build and package custom Jellyfin 12.0 forks:
+> - **Ubuntu 24.04 (Noble) .deb Packages**: Builds `jellyfin-server`, `jellyfin-web`, and `jellyfin` metapackages using .NET 10 and Node.js 24 for amd64 architecture.
+> - **Custom Container Image**: Builds and pushes Docker images to GitHub Container Registry (`ghcr.io/koopjm/jellyfin:custom-12.0` and `:latest`).
+> - **1-Click Release Publishing**: Quick workflow to publish tested build artifacts directly as GitHub releases.
+
+---
+
 Jellyfin is the Free Software Media System that puts you in control of managing and streaming your media. It is an alternative to the proprietary Emby and Plex, to provide media from a dedicated server to end-user devices via multiple apps.
 
 This repository contains operating system and Docker packaging for Jellyfin, for use by manual builders and our release CI system with GitHub workflows. All packaging has henceforth been removed from the main code repositories for the [Jellyfin Server](https://github.com/jellyfin/jellyfin) and [Primary WebUI](https://github.com/jellyfin/jellyfin-web) and moved here.
