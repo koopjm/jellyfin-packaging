@@ -1,0 +1,38 @@
+name: Publish Tested Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      run_id:
+        description: 'Action Run ID to publish (e.g. 31210252058)'
+        required: true
+        type: string
+      tag_name:
+        description: 'Release Tag (e.g. v12.0-custom)'
+        required: true
+        default: 'v12.0-custom'
+        type: string
+
+jobs:
+  publish-release:
+    name: Publish Approved Release from Run Artifacts
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Download Artifacts from Specified Build Run
+        uses: actions/download-artifact@v4
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          run-id: ${{ inputs.run_id }}
+          path: './release-assets'
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ inputs.tag_name }}
+          name: ${{ inputs.tag_name }}
+          files: './release-assets/**/*'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
